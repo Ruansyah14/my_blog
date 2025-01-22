@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/posts', \App\Http\Controllers\PostController::class);
+Route::middleware(['auth'])->group(function() {
+    Route::resource('/posts', \App\Http\Controllers\PostController::class);
+});
 
 Auth::routes();
 
